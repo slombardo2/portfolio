@@ -36,7 +36,7 @@ spec:
 #       image: portfolio:latest # Microservice Builder
 #       image: mycluster.icp:8500/stock-trader/portfolio:latest # IBM Cloud Private
 #       image: registry.ng.bluemix.net/stock_trader/portfolio:latest # IBM Kubernetes Service
-        image: ibmstocktrader/portfolio:latest # Docker Hub
+        image: slombardo2/portfolio:latest # Docker Hub
         env:
           - name: JDBC_HOST
             valueFrom:
@@ -189,6 +189,13 @@ spec:
             value: json
           - name: WLP_LOGGING_CONSOLE_SOURCE
             value: message,ffdc
+          #DEM configuration settings
+          - name: IBM_APM_RUM_ENABLED
+            value: "true"
+          - name: JAEGER_SAMPLER_TYPE
+            value: "probabilistic"
+          - name: JAEGER_SAMPLER_PARAM
+            value: "1.00"
         ports:
           - containerPort: 9080
           - containerPort: 9443
