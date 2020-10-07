@@ -29,7 +29,7 @@ FROM openliberty/open-liberty:kernel-java11-openj9-ubi
 RUN rm /opt/ol/wlp/usr/servers/defaultServer/server.xml
 
 ARG extract_keycloak_cert
-ENV OPENJ9_SCC=false
+# ENV OPENJ9_SCC=false
 USER root
 COPY src/main/liberty/config /opt/ol/wlp/usr/servers/defaultServer/
 COPY --from=build /usr/target/portfolio-1.0-SNAPSHOT.war /opt/ol/wlp/usr/servers/defaultServer/apps/Portfolio.war
