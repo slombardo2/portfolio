@@ -38,6 +38,7 @@ RUN chown -R 1001:0 config/
 USER 1001
 RUN if [ "$extract_keycloak_cert" = "true" ]; then keytool -import -v -trustcacerts -alias keycloak -file /tmp/keycloak.pem -keystore /opt/ol/wlp/usr/servers/defaultServer/resources/security/trust.p12 --noprompt --storepass St0ckTr@der ; fi
 USER root
+RUN chmod 777 /opt/ol/wlp/usr/servers/defaultServer
 COPY javametrics.liberty.icam-1.2.1.esa /opt/
 RUN mkdir -p /opt/ol/wlp/usr/extension/lib/features/
 RUN cd /tmp && jar xvf /opt/javametrics.liberty.icam-1.2.1.esa && mv /tmp/wlp/liberty_dc /opt/ol/wlp/usr/extension/ && mv /tmp/OSGI-INF/SUBSYSTEM.MF /opt/ol/wlp/usr/extension/lib/features/javametrics.liberty.icam-1.2.1.mf
