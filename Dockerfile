@@ -45,5 +45,5 @@ RUN cd /tmp && jar xvf /opt/javametrics.liberty.icam-1.2.1.esa && mv /tmp/wlp/li
 COPY silent_config_liberty_dc.txt /opt/ol/wlp/usr/extension/liberty_dc/bin/
 RUN chmod +x /opt/ol/wlp/usr/extension/liberty_dc/bin/*
 # RUN chmod +x /opt/ol/wlp/usr/extension/liberty_dc/bin/config_unified_dc.sh
-RUN /opt/ol/wlp/usr/extension/liberty_dc/bin/config_unified_dc.sh -silent
+# RUN /opt/ol/wlp/usr/extension/liberty_dc/bin/config_unified_dc.sh -silent
 RUN configure.sh
