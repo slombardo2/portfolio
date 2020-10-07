@@ -37,11 +37,11 @@ COPY --from=cert-extractor /keycloak.pem /tmp/keycloak.pem
 RUN chown -R 1001:0 config/
 USER 1001
 RUN if [ "$extract_keycloak_cert" = "true" ]; then keytool -import -v -trustcacerts -alias keycloak -file /tmp/keycloak.pem -keystore /opt/ol/wlp/usr/servers/defaultServer/resources/security/trust.p12 --noprompt --storepass St0ckTr@der ; fi
+USER root
 COPY javametrics.liberty.icam-1.2.1.esa /opt/
 RUN mkdir -p /opt/ol/wlp/usr/extension/lib/features/
 RUN cd /tmp && jar xvf /opt/javametrics.liberty.icam-1.2.1.esa && mv /tmp/wlp/liberty_dc /opt/ol/wlp/usr/extension/ && mv /tmp/OSGI-INF/SUBSYSTEM.MF /opt/ol/wlp/usr/extension/lib/features/javametrics.liberty.icam-1.2.1.mf
 COPY silent_config_liberty_dc.txt /opt/ol/wlp/usr/extension/liberty_dc/bin/
 RUN chmod +x /opt/ol/wlp/usr/extension/liberty_dc/bin/config_unified_dc.sh
 RUN /opt/ol/wlp/usr/extension/liberty_dc/bin/config_unified_dc.sh -silent
-RUN chmod -R 777 /opt/ol/wlp/usr/extension/liberty_dc
 RUN configure.sh
