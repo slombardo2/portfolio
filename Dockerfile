@@ -42,6 +42,7 @@ RUN yum -y install shadow-utils
 RUN groupadd -g 1000590000 appgrp && useradd -l -r -d /home/appuser -u 1000590000 -g appgrp appuser && chown -R appuser:appgrp /opt/ol/wlp && chown -R appuser:appgrp /logs
 USER appuser
 # RUN chmod 777 /opt/ol/wlp/usr/servers/defaultServer
+COPY ibm-cloud-apm-dc-configpack.tar /opt/
 COPY javametrics.liberty.icam-1.2.1.esa /opt/
 RUN mkdir -p /opt/ol/wlp/usr/extension/lib/features/
 RUN cd /tmp && jar xvf /opt/javametrics.liberty.icam-1.2.1.esa && mv /tmp/wlp/liberty_dc /opt/ol/wlp/usr/extension/ && mv /tmp/OSGI-INF/SUBSYSTEM.MF /opt/ol/wlp/usr/extension/lib/features/javametrics.liberty.icam-1.2.1.mf
