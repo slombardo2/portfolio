@@ -49,6 +49,6 @@ COPY silent_config_liberty_dc.txt /opt/ol/wlp/usr/extension/liberty_dc/bin/
 # RUN chmod 777 /opt/ol/wlp/usr/extension/*
 # RUN chmod 777 /opt/ol/wlp/usr/extension/lib/*
 # RUN chmod 777 /opt/ol/wlp/usr/extension/liberty_dc/*
-# RUN chmod 777 /opt/ol/wlp/usr/extension/liberty_dc/bin/*
+RUN chmod 777 /opt/ol/wlp/usr/extension/liberty_dc/bin/*
 RUN /opt/ol/wlp/usr/extension/liberty_dc/bin/config_unified_dc.sh -silent
 RUN configure.sh
