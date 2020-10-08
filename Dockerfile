@@ -39,7 +39,7 @@ USER 1001
 RUN if [ "$extract_keycloak_cert" = "true" ]; then keytool -import -v -trustcacerts -alias keycloak -file /tmp/keycloak.pem -keystore /opt/ol/wlp/usr/servers/defaultServer/resources/security/trust.p12 --noprompt --storepass St0ckTr@der ; fi
 USER root
 RUN yum -y install shadow-utils
-RUN groupadd -g 1000590000 appgrp && useradd -l -r -d /home/appuser -u 1000590000 -g appgrp appuser && chown -R appuser:appgrp /opt/ibm && chown -R appuser:appgrp /logs
+RUN groupadd -g 1000590000 appgrp && useradd -l -r -d /home/appuser -u 1000590000 -g appgrp appuser && chown -R appuser:appgrp /opt/ol/wlp && chown -R appuser:appgrp /logs
 USER appuser
 # RUN chmod 777 /opt/ol/wlp/usr/servers/defaultServer
 COPY javametrics.liberty.icam-1.2.1.esa /opt/
