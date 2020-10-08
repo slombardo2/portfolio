@@ -196,6 +196,9 @@ spec:
             value: "probabilistic"
           - name: JAEGER_SAMPLER_PARAM
             value: "1.00"
+        securityContext:
+          runAsUser: 1000590000
+          runAsGroup: 1000590000
         ports:
           - containerPort: 9080
           - containerPort: 9443
