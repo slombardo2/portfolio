@@ -18,11 +18,11 @@ ARG extract_keycloak_cert
 RUN echo "Extract cert: '$extract_keycloak_cert' - Connection string: '$keycloak_connection_string'" && touch keycloak.pem
 RUN if [ "$extract_keycloak_cert" = "true" ]; then apk add openssl && openssl s_client -showcerts -connect ${keycloak_connection_string} </dev/null 2>/dev/null|openssl x509 -outform PEM > keycloak.pem ; fi
 
-FROM maven:3.6-jdk-11-slim AS build
+FROM maven:3.6-jdk-8-slim AS build
 COPY . /usr/
 RUN mvn -f /usr/pom.xml clean package
 
-FROM openliberty/open-liberty:kernel-java11-openj9-ubi
+FROM openliberty/open-liberty:kernel-java8-openj9-ubi
 
 # Following line is a workaround for an issue where sometimes the server somehow loads the built-in server.xml,
 # rather than the one I copy into the image.  That shouldn't be possible, but alas, it appears to be some Docker bug.
